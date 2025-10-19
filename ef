@@ -7,7 +7,7 @@ local ESPTab = Window:Tab({Title="ESP", Icon="eye"})
 local MiscTab = Window:Tab({Title="Misc", Icon="rbxassetid://4483345998"})
 
 local RunService = game:GetService("RunService")
-loacal LocalPlayer = game.Players.LocalPlayer
+local LocalPlayer = game.Players.LocalPlayer 
 local TeleportService = game:GetService("TeleportService")
 local HttpService = game:GetService("HttpService")
 
@@ -83,12 +83,13 @@ dropdownRef = MainTab:Dropdown({
 
 local function refreshDropdown()
     local newList = getPlayerList()
-    dropdownRef:Refresh(newList)
+    dropdownRef:SetValues(newList) 
     if selectedPlayer~="None" and not table.find(newList, selectedPlayer) then
         selectedPlayer="None"
         if dropdownRef.Set then dropdownRef:Set("None") end
     end
 end
+
 
 game.Players.PlayerAdded:Connect(refreshDropdown)
 game.Players.PlayerRemoving:Connect(refreshDropdown)
